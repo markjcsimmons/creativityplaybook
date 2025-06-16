@@ -66,37 +66,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let titleDone = false;
 
+  function outputChar(c){
+    if(c === '\n'){
+      target.innerHTML += '<br>';
+    }else if(c === ' '){
+      target.innerHTML += '&nbsp;';
+    }else{
+      target.innerHTML += c;
+    }
+  }
+
   function typeNext(){
     if(idx >= text.length) return;
 
     if(mistakes[idx]){
       const wrong = mistakes[idx];
       delete mistakes[idx];
-      target.textContent += wrong;
+      outputChar(wrong);
       setTimeout(()=>{
         // backspace wrong char
-        target.textContent = target.textContent.slice(0,-1);
+        target.innerHTML = target.innerHTML.slice(0,-1);
         // type correct char
         const char = text[idx++];
-        target.textContent += char;
+        outputChar(char);
         setTimeout(typeNext, delayFor(char));
       }, 180);
       return;
     }
 
     const char = text[idx++];
-    target.textContent += char;
+    outputChar(char);
     setTimeout(typeNext, delayFor(char));
 
     if(char === '\n' && !titleDone){
       titleDone = true;
       // after a short pause, apply highlight then bold
       setTimeout(() => {
-        const full = target.textContent;
+        const full = target.innerText;
         const nlIdx = full.indexOf('\n');
         const title = full.slice(0, nlIdx);
         const rest = full.slice(nlIdx + 1);
-        target.innerHTML = `<span id="titleSpan">${title}</span>\n${rest}`;
+        target.innerHTML = `<span id="titleSpan">${title}</span><br>${rest}`;
         const span = document.getElementById('titleSpan');
         span.style.background = 'rgba(0,120,215,0.4)';
         setTimeout(() => {
