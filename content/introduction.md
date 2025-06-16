@@ -10,6 +10,7 @@ date: 2025-01-01
 
 <style>
 #copyRaw { display:none; }
+#copyRaw { white-space: pre-wrap; font-size: 1rem; line-height: 1.6; }
 #typewriter { white-space: pre-wrap; font-size: 1rem; line-height: 1.6; }
 </style>
 
@@ -50,7 +51,9 @@ Dave & Mark, 2025
 <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.16"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  const raw = document.getElementById('copyRaw').textContent.trim();
+  const rawEl = document.getElementById('copyRaw');
+  const raw = rawEl.textContent.trim();
+  rawEl.style.display = 'none';
   new Typed('#typewriter', {
     strings: [raw],
     typeSpeed: 20,
