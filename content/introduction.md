@@ -56,7 +56,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const target = document.getElementById('typewriter');
   rawEl.remove();
 
-  const mistakes = { 50: 'e', 220:'x', 420: 'z', 650:'p', 900:'q' }; // simulated typos
+  const mistakes = {
+    50: 'e',   // everyone
+    120:'s',  // creativity
+    220:'x',  // Biggerer
+    300:'d',  // consolidated
+    420:'z',  // convenience
+    520:'v',  // hollow
+    650:'p',  // optimization
+    750:'k',  // Algorithms
+    900:'q',  // creativity
+    1050:'u', // connection
+    1200:'c', // toolkit
+    1350:'m', // disruptive
+    1500:'b', // precipice
+    1650:'n', // experience
+    1800:'x'  // disappear
+  }; // simulated typos
   let idx = 0;
 
   function delayFor(char){
