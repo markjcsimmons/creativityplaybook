@@ -11,7 +11,7 @@ date: 2025-01-01
 <style>
 #copyRaw { display:none; white-space: pre-wrap; font-size: 1rem; line-height: 1.6; }
 #typewriter { white-space: pre-wrap; font-size: 1rem; line-height: 1.6; font-family: "Courier New", monospace; overflow-wrap: anywhere; }
-.word{display:inline-block;}
+.word,.phraseWord{display:inline-block;}
 </style>
 
 <pre id="copyRaw">
@@ -67,6 +67,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let titleDone = false;
   let paused = false;
+  let phraseHandled = false;
+  const phrase = "Artists and musicians seem to have creativity in their DNA,";
+  const phraseEnd = text.indexOf(phrase) + phrase.length;
 
   function outputChar(c){
     if(c === '\n'){
@@ -131,6 +134,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         selectNext();
       }, 200);
+    }
+
+    // handle phrase highlight once phrase fully typed
+    if(!phraseHandled && idx === phraseEnd){
+      phraseHandled = true;
+      paused = true;
+      setTimeout(()=>{
+        // wrap phrase in spans
+        target.innerHTML = target.innerHTML.replace(phrase, phrase.split(' ').map(w=>`<span class=\"phraseWord\">${w}</span>`).join(' '));
+        const pw = [...document.querySelectorAll('.phraseWord')];
+        let pIdx = pw.length - 1;
+        function selectPhrase(){
+          if(pIdx < 0){
+            setTimeout(()=>{
+              pw.forEach(s=>{s.style.background='transparent'; s.style.fontWeight='bold';});
+              paused = false;
+              setTimeout(typeNext,50);
+            },500);
+            return;
+          }
+          pw[pIdx].style.background='rgba(0,120,215,0.4)';
+          pIdx--;
+          setTimeout(selectPhrase,180);
+        }
+        selectPhrase();
+      },200);
+      return;
     }
   }
 
