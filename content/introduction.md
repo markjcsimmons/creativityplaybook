@@ -54,9 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const target = document.getElementById('typewriter');
   rawEl.remove();
 
-  const mistakeMap = { 50: 'e', 420: 'z' }; // index: wrongChar
+  const mistakes = { 50: 'e', 420: 'z' }; // index: wrongChar
   let idx = 0;
-  let inMistake = false;
 
   function delayFor(char){
     if(char === '.' || char === '!' || char === '?' ) return 300;
@@ -68,18 +67,17 @@ document.addEventListener('DOMContentLoaded', () => {
   function typeNext(){
     if(idx >= text.length) return;
 
-    if(mistakeMap[idx] && !inMistake){
-      inMistake = true;
-      // type wrong char
-      target.textContent += mistakeMap[idx];
+    if(mistakes[idx]){
+      const wrong = mistakes[idx];
+      delete mistakes[idx];
+      target.textContent += wrong;
       setTimeout(()=>{
-        // delete wrong char
+        // backspace wrong char
         target.textContent = target.textContent.slice(0,-1);
-        setTimeout(()=>{
-          // now type correct char and continue
-          inMistake = false;
-          typeNext();
-        }, 120);
+        // type correct char
+        const char = text[idx++];
+        target.textContent += char;
+        setTimeout(typeNext, delayFor(char));
       }, 180);
       return;
     }
