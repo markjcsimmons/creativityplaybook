@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const target = document.getElementById('typewriter');
   rawEl.remove();
 
-  const mistakes = { 50: 'e', 420: 'z' }; // index: wrongChar
+  const mistakes = { 50: 'e', 220:'x', 420: 'z', 650:'p', 900:'q' }; // simulated typos
   let idx = 0;
 
   function delayFor(char){
@@ -75,6 +75,10 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       text: "A world that runs like a machine",
+      handled: false
+    },
+    {
+      text: "but feels empty",
       handled: false
     }
   ];
