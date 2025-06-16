@@ -138,21 +138,24 @@ document.addEventListener('DOMContentLoaded', () => {
           maybeAutoScroll();
           setTimeout(typeWrong, 26);
         }else{
-          // finished wrong word; pause then erase it
+          // finished wrong word; pause then erase it (longer hesitation for dramatic effect)
           setTimeout(()=>{
             function eraseWrong(){
               if(wPos>0){
                 target.innerHTML = target.innerHTML.slice(0,-1);
                 wPos--;
-                setTimeout(eraseWrong,40);
+                setTimeout(eraseWrong,80); // slower deletion
               }else{
-                paused = false;
-                // proceed without incrementing idx (so correct word will be typed normally)
-                typeNext();
+                // brief thinking pause before typing the correct word
+                setTimeout(()=>{
+                  paused = false;
+                  // proceed without incrementing idx (so correct word will be typed normally)
+                  typeNext();
+                },300);
               }
             }
             eraseWrong();
-          },400);
+          },700); // longer hesitation before correction begins
         }
       }
       typeWrong();
