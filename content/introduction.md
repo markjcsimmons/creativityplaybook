@@ -65,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   let titleDone = false;
+  let paused = false;
 
   function outputChar(c){
     if(c === '\n'){
@@ -77,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function typeNext(){
+    if(paused) return;
     if(idx >= text.length) return;
 
     if(mistakes[idx]){
@@ -101,6 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if(char === '\n' && !titleDone){
       titleDone = true;
       // after a short pause, apply highlight then bold
+      paused = true;
       setTimeout(() => {
         const full = target.innerText;
         const nlIdx = full.indexOf('\n');
@@ -112,6 +115,8 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
           span.style.background = 'transparent';
           span.style.fontWeight = 'bold';
+          paused = false;
+          setTimeout(typeNext, 50);
         }, 500);
       }, 200);
     }
