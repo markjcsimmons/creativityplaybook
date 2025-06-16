@@ -92,10 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       text: "A world that runs like a machine",
       handled: false
-    },
-    {
-      text: "but feels empty",
-      handled: false
     }
   ];
 
@@ -124,11 +120,13 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(()=>{
         // backspace wrong char
         target.innerHTML = target.innerHTML.slice(0,-1);
-        // type correct char
-        const char = text[idx++];
-        outputChar(char);
-        setTimeout(typeNext, delayFor(char));
-      }, 180);
+        // brief thinking pause
+        setTimeout(()=>{
+          const char = text[idx++];
+          outputChar(char);
+          setTimeout(typeNext, delayFor(char));
+        }, 300);
+      }, 400);
       return;
     }
 
