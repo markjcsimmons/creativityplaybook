@@ -222,10 +222,15 @@ document.addEventListener('DOMContentLoaded', () => {
       phraseObj.handled = true;
       paused = true;
       setTimeout(()=>{
-        // wrap phrase in spans
-        const regex = new RegExp(phraseObj.text.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'));
-        target.innerHTML = target.innerHTML.replace(regex, phraseObj.text.split(' ').map(w=>`<span class=\"phraseWord\">${w}</span>`).join(' '));
-        const pw = [...document.querySelectorAll('.phraseWord')];
+        // wrap phrase in spans with unique class to avoid affecting other phrases
+        const phraseIndex = specialPhrases.indexOf(phraseObj);
+        const uniqueClass = `phraseWord${phraseIndex}`;
+        const regex = new RegExp(phraseObj.text.replace(/[.*+?^${}()|[\\]\\]/g,'\\$&'));
+        target.innerHTML = target.innerHTML.replace(
+          regex,
+          phraseObj.text.split(' ').map(w=>`<span class=\"phraseWord ${uniqueClass}\">${w}</span>`).join(' ')
+        );
+        const pw = [...document.querySelectorAll(`.${uniqueClass}`)];
         let pIdx = pw.length - 1;
         function selectPhrase(){
           if(pIdx < 0){
