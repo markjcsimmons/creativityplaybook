@@ -138,4 +138,7 @@ body:not(:has(nav.site-nav)) main { padding:0; max-width:none; }
 .link-thoughts{display:block!important;position:absolute;top:50%;left:5%;width:90%;height:35%;z-index:1;}
 
 /* Contact hotspot: bottom strip */
-.link-contact{display:block!important;position:absolute;top:85%;left:5%;width:90%;height:13%;z-index:1;} 
+.link-contact{display:block!important;position:absolute;top:85%;left:5%;width:90%;height:13%;z-index:1;}
+
+html,body{height:auto;overflow-y:auto;}
+#typewriter{display:block;} 
