@@ -11,6 +11,7 @@ date: 2025-01-01
 <style>
 #copyRaw { display:none; white-space: pre-wrap; font-size: 1rem; line-height: 1.6; }
 #typewriter { white-space: pre-wrap; font-size: 1rem; line-height: 1.6; font-family: "Courier New", monospace; overflow-wrap: anywhere; }
+.word{display:inline-block;}
 </style>
 
 <pre id="copyRaw">
@@ -109,15 +110,26 @@ document.addEventListener('DOMContentLoaded', () => {
         const nlIdx = full.indexOf('\n');
         const title = full.slice(0, nlIdx);
         const rest = full.slice(nlIdx + 1);
-        target.innerHTML = `<span id="titleSpan">${title}</span><br>${rest}`;
-        const span = document.getElementById('titleSpan');
-        span.style.background = 'rgba(0,120,215,0.4)';
-        setTimeout(() => {
-          span.style.background = 'transparent';
-          span.style.fontWeight = 'bold';
-          paused = false;
-          setTimeout(typeNext, 50);
-        }, 500);
+        const wordSpans = title.split(' ').map(w=>`<span class=\"word\">${w}</span>`);
+        target.innerHTML = `${wordSpans.join(' ')}<br>${rest}`;
+
+        const spans = [...document.querySelectorAll('.word')];
+        let wIdx = spans.length - 1;
+        function selectNext(){
+          if(wIdx < 0){
+            // finished selection
+            setTimeout(()=>{
+              spans.forEach(s=>{s.style.background='transparent'; s.style.fontWeight='bold';});
+              paused = false;
+              setTimeout(typeNext, 50);
+            },500);
+            return;
+          }
+          spans[wIdx].style.background = 'rgba(0,120,215,0.4)';
+          wIdx--;
+          setTimeout(selectNext, 180); // speed of highlight per word
+        }
+        selectNext();
       }, 200);
     }
   }
