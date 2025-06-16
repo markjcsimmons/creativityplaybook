@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
         );
         const pw = [...document.querySelectorAll(`.${uniqueClass}`)];
         let pIdx = pw.length - 1;
-        const highlightDelay = phraseObj.text.startsWith("Artists and musicians") ? 60 : 30;
+        const highlightDelay = 60; // unified slower highlight for all special phrases
         function selectPhrase(){
           if(pIdx < 0){
             setTimeout(()=>{
