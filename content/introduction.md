@@ -10,7 +10,7 @@ date: 2025-01-01
 
 <style>
 #copyRaw { display:none; white-space: pre-wrap; font-size: 1rem; line-height: 1.6; }
-#typewriter { white-space: pre-wrap; font-size: 1rem; line-height: 1.6; font-family: "Courier New", monospace; }
+#typewriter { white-space: pre-wrap; font-size: 1rem; line-height: 1.6; font-family: "Courier New", monospace; overflow-wrap: anywhere; }
 </style>
 
 <pre id="copyRaw">
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if(c === '\n'){
       target.innerHTML += '<br>';
     }else if(c === ' '){
-      target.innerHTML += '&nbsp;';
+      target.innerHTML += ' ';
     }else{
       target.innerHTML += c;
     }
