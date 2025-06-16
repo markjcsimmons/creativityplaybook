@@ -241,6 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
         );
         const pw = [...document.querySelectorAll(`.${uniqueClass}`)];
         let pIdx = pw.length - 1;
+        const highlightDelay = phraseObj.text.startsWith("Artists and musicians") ? 60 : 30;
         function selectPhrase(){
           if(pIdx < 0){
             setTimeout(()=>{
@@ -254,7 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
           pw[pIdx].style.background='rgba(0,120,215,0.4)';
           pIdx--;
-          setTimeout(selectPhrase,30);
+          setTimeout(selectPhrase,highlightDelay);
         }
         selectPhrase();
       },200);
