@@ -73,6 +73,15 @@ document.addEventListener('DOMContentLoaded', () => {
     1650:'n', // experience
     1800:'x'  // disappear
   }; // simulated typos
+
+  // Word-level mistakes (e.g., type wrong word, then replace)
+  const wordMistakes = [
+    {
+      idx: text.indexOf("the result is fewer") + "the result is ".length, // points to the first char of "fewer"
+      wrong: "less"
+    }
+  ];
+
   let idx = 0;
 
   function delayFor(char){
@@ -116,6 +125,39 @@ document.addEventListener('DOMContentLoaded', () => {
   function typeNext(){
     if(paused) return;
     if(idx >= text.length) return;
+
+    // Handle word-level mistake at current index
+    const wmIndex = wordMistakes.findIndex(wm => wm.idx === idx);
+    if(wmIndex !== -1){
+      const wm = wordMistakes.splice(wmIndex,1)[0]; // remove so it's only handled once
+      paused = true;
+      let wPos = 0;
+      function typeWrong(){
+        if(wPos < wm.wrong.length){
+          outputChar(wm.wrong[wPos++]);
+          maybeAutoScroll();
+          setTimeout(typeWrong, 26);
+        }else{
+          // finished wrong word; pause then erase it
+          setTimeout(()=>{
+            function eraseWrong(){
+              if(wPos>0){
+                target.innerHTML = target.innerHTML.slice(0,-1);
+                wPos--;
+                setTimeout(eraseWrong,40);
+              }else{
+                paused = false;
+                // proceed without incrementing idx (so correct word will be typed normally)
+                typeNext();
+              }
+            }
+            eraseWrong();
+          },400);
+        }
+      }
+      typeWrong();
+      return;
+    }
 
     if(mistakes[idx]){
       const wrong = mistakes[idx];
