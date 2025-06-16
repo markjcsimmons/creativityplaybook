@@ -58,11 +58,13 @@ document.addEventListener('DOMContentLoaded', () => {
   let idx = 0;
 
   function delayFor(char){
-    if(char === '.' || char === '!' || char === '?' ) return 300;
-    if(char === ',' ) return 150;
-    if(char === '\n') return 200;
-    return 20; // base speed fast
+    if(char === '.' || char === '!' || char === '?' ) return 390; // 300 *1.3
+    if(char === ',' ) return 195; // 150*1.3
+    if(char === '\n') return 260; // 200*1.3
+    return 26; // 20*1.3
   }
+
+  let titleDone = false;
 
   function typeNext(){
     if(idx >= text.length) return;
@@ -85,6 +87,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const char = text[idx++];
     target.textContent += char;
     setTimeout(typeNext, delayFor(char));
+
+    if(char === '\n' && !titleDone){
+      titleDone = true;
+      // after a short pause, apply highlight then bold
+      setTimeout(() => {
+        const full = target.textContent;
+        const nlIdx = full.indexOf('\n');
+        const title = full.slice(0, nlIdx);
+        const rest = full.slice(nlIdx + 1);
+        target.innerHTML = `<span id="titleSpan">${title}</span>\n${rest}`;
+        const span = document.getElementById('titleSpan');
+        span.style.background = '#ffff00';
+        setTimeout(() => {
+          span.style.background = 'transparent';
+          span.style.fontWeight = 'bold';
+        }, 500);
+      }, 200);
+    }
   }
 
   typeNext();
