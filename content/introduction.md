@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const rest = full.slice(nlIdx + 1);
         target.innerHTML = `<span id="titleSpan">${title}</span>\n${rest}`;
         const span = document.getElementById('titleSpan');
-        span.style.background = '#ffff00';
+        span.style.background = 'rgba(0,120,215,0.4)';
         setTimeout(() => {
           span.style.background = 'transparent';
           span.style.fontWeight = 'bold';
