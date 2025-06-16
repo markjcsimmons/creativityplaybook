@@ -9,7 +9,7 @@ date: 2025-01-01
 ---
 
 <style>
-#copyRaw { white-space: pre-wrap; font-size: 1rem; line-height: 1.6; }
+#copyRaw { display:none; white-space: pre-wrap; font-size: 1rem; line-height: 1.6; }
 #typewriter { white-space: pre-wrap; font-size: 1rem; line-height: 1.6; }
 </style>
 
@@ -58,7 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
     startDelay: 0,
     smartBackspace: false,
     showCursor: false,
-    onBegin: () => { rawEl.style.visibility = 'hidden'; }
   });
 });
 </script> 
