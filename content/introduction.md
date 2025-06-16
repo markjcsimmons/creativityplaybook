@@ -74,6 +74,22 @@ document.addEventListener('DOMContentLoaded', () => {
     1800:'x'  // disappear
   }; // simulated typos
 
+  // Inject a few more single-character slips after the "epiphanies" sequence
+  (() => {
+    const afterEpiph = text.indexOf('epiphanies') + 'epiphanies'.length;
+    const extra = [
+      { word: 'creativity', offset: 0, wrong: 'k' },
+      { word: 'algorithm', offset: 1, wrong: 'z' },
+      { word: 'volume', offset: 2, wrong: 'q' }
+    ];
+    extra.forEach(({ word, offset, wrong }) => {
+      const pos = text.indexOf(word, afterEpiph);
+      if (pos !== -1) {
+        mistakes[pos + offset] = wrong;
+      }
+    });
+  })();
+
   // Word-level mistakes (e.g., type wrong word, then replace)
   const wordMistakes = [
     {
