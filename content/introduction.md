@@ -52,7 +52,7 @@ Dave & Mark, 2025
 document.addEventListener('DOMContentLoaded', () => {
   const rawEl = document.getElementById('copyRaw');
   const raw = rawEl.textContent.trim();
-  rawEl.style.display = 'none';
+  // rawEl.style.display = 'none';
   new Typed('#typewriter', {
     strings: [raw],
     typeSpeed: 20,
