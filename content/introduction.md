@@ -104,6 +104,10 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       idx: text.indexOf("epiphanies"),
       wrong: "ephiphanies"
+    },
+    {
+      idx: text.indexOf("its output"),
+      wrong: "it's"
     }
   ];
 
