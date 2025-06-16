@@ -92,11 +92,15 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       text: "A world that runs like a machine but feels empty.",
       handled: false
+    },
+    {
+      text: "Creativity isn't just about standing out; it's about reaching deeper.",
+      handled: false
     }
   ];
 
   specialPhrases.forEach(p=>{
-    p.endIdx = text.indexOf(p.text) + p.text.length;
+    p.endIdx = text.indexOf(p.text)+p.text.length;
   });
 
   function outputChar(c){
