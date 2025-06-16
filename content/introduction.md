@@ -10,7 +10,7 @@ date: 2025-01-01
 
 <style>
 #copyRaw { display:none; white-space: pre-wrap; font-size: 1rem; line-height: 1.6; }
-#typewriter { white-space: pre-wrap; font-size: 1rem; line-height: 1.6; }
+#typewriter { white-space: pre-wrap; font-size: 1rem; line-height: 1.6; font-family: "Courier New", monospace; }
 </style>
 
 <pre id="copyRaw">
@@ -50,17 +50,45 @@ Dave & Mark, 2025
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const rawEl = document.getElementById('copyRaw');
-  const raw = rawEl.textContent.trim();
+  const text = rawEl.textContent.trim();
   const target = document.getElementById('typewriter');
   rawEl.remove();
+
+  const mistakeMap = { 50: 'e', 420: 'z' }; // index: wrongChar
   let idx = 0;
-  const speed = 15; // milliseconds per char
-  function typeNext(){
-    if(idx < raw.length){
-      target.textContent += raw[idx++];
-      setTimeout(typeNext, speed);
-    }
+  let inMistake = false;
+
+  function delayFor(char){
+    if(char === '.' || char === '!' || char === '?' ) return 300;
+    if(char === ',' ) return 150;
+    if(char === '\n') return 200;
+    return 20; // base speed fast
   }
+
+  function typeNext(){
+    if(idx >= text.length) return;
+
+    if(mistakeMap[idx] && !inMistake){
+      inMistake = true;
+      // type wrong char
+      target.textContent += mistakeMap[idx];
+      setTimeout(()=>{
+        // delete wrong char
+        target.textContent = target.textContent.slice(0,-1);
+        setTimeout(()=>{
+          // now type correct char and continue
+          inMistake = false;
+          typeNext();
+        }, 120);
+      }, 180);
+      return;
+    }
+
+    const char = text[idx++];
+    target.textContent += char;
+    setTimeout(typeNext, delayFor(char));
+  }
+
   typeNext();
 });
 </script> 
