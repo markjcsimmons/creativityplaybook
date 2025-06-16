@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
       handled: false
     },
     {
-      text: "A world that runs like a machine",
+      text: "A world that runs like a machine but feels empty.",
       handled: false
     }
   ];
