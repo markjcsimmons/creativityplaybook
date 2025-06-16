@@ -6,7 +6,15 @@ author: "Dave Stewart & Mark Simmons"
 date: 2025-01-01
 ---
 
-When we wrote *The Business Playground* in 2010, our goal was to give everyone—from first-time entrepreneurs to corporate leaders—a set of tools to unlock their creativity and make their work stand out. Artists and musicians seem to have creativity in their DNA, and there's so much businesses can learn from how they think and create. **Our message was simple: think like an artist, and you can bring more meaning and connection to what you do.**
+<style>
+#copyRaw { display:none; }
+#typewriter { white-space: pre-wrap; font-size: 1rem; line-height: 1.6; }
+</style>
+
+<pre id="copyRaw">
+Creativity in a World of Biggerer and Biggerer
+
+When we wrote The Business Playground in 2010, our goal was to give everyone—from first-time entrepreneurs to corporate leaders—a set of tools to unlock their creativity and make their work stand out. Artists and musicians seem to have creativity in their DNA, and there's so much businesses can learn from how they think and create. **Our message was simple: think like an artist, and you can bring more meaning and connection to what you do.**
 
 Now, fifteen years later, the world has gone **Biggerer and Biggerer** (with a nod to *The Lorax* by Dr. Seuss). Companies have merged, industries have consolidated, and the result is fewer—but larger—players running the show. Sure, there are benefits—efficiency, economies of scale, bigger profits. **But when everything starts to look the same, where does creativity fit in?**
 
@@ -32,4 +40,21 @@ Without creativity, we're just another cog in the machine. **With it, we have th
 
 Now more than ever, that's a game worth playing.
 
-— *Dave Stewart & Mark Simmons, 2025* 
+— *Dave Stewart & Mark Simmons, 2025*
+</pre>
+
+<div id="typewriter"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.16"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const raw = document.getElementById('copyRaw').textContent.trim();
+  new Typed('#typewriter', {
+    strings: [raw],
+    typeSpeed: 20,
+    startDelay: 300,
+    smartBackspace: false,
+    showCursor: false,
+  });
+});
+</script> 
