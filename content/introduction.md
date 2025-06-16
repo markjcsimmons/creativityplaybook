@@ -79,6 +79,15 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       idx: text.indexOf("the result is fewer") + "the result is ".length, // points to the first char of "fewer"
       wrong: "less"
+    },
+    // multi-stage misspelling of "epiphanies"
+    {
+      idx: text.indexOf("epiphanies"),
+      wrong: "epifanies"
+    },
+    {
+      idx: text.indexOf("epiphanies"),
+      wrong: "ephiphanies"
     }
   ];
 
@@ -236,8 +245,10 @@ document.addEventListener('DOMContentLoaded', () => {
           if(pIdx < 0){
             setTimeout(()=>{
               pw.forEach(s=>{s.style.background='transparent'; s.style.fontWeight='bold';});
+              // extra pause after bolding the third special phrase
+              const extraPause = phraseObj.text.startsWith("Creativity isn't just") ? 700 : 50;
               paused = false;
-              setTimeout(typeNext,50);
+              setTimeout(typeNext, extraPause);
             },80);
             return;
           }
