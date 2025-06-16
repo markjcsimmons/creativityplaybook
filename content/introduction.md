@@ -142,10 +142,10 @@ document.addEventListener('DOMContentLoaded', () => {
           }
           spans[wIdx].style.background = 'rgba(0,120,215,0.4)';
           wIdx--;
-          setTimeout(selectNext, 180); // speed of highlight per word
+          setTimeout(selectNext, 30); // speed of highlight per word
         }
         selectNext();
-      }, 200);
+      }, 80);
     }
 
     // handle any special phrase when fully typed
@@ -165,12 +165,12 @@ document.addEventListener('DOMContentLoaded', () => {
               pw.forEach(s=>{s.style.background='transparent'; s.style.fontWeight='bold';});
               paused = false;
               setTimeout(typeNext,50);
-            },150);
+            },80);
             return;
           }
           pw[pIdx].style.background='rgba(0,120,215,0.4)';
           pIdx--;
-          setTimeout(selectPhrase,60);
+          setTimeout(selectPhrase,30);
         }
         selectPhrase();
       },200);
