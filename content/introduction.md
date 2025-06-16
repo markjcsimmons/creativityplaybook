@@ -165,23 +165,19 @@ document.addEventListener('DOMContentLoaded', () => {
               pw.forEach(s=>{s.style.background='transparent'; s.style.fontWeight='bold';});
               paused = false;
               setTimeout(typeNext,50);
-            },500);
+            },150);
             return;
           }
           pw[pIdx].style.background='rgba(0,120,215,0.4)';
           pIdx--;
-          setTimeout(selectPhrase,90);
+          setTimeout(selectPhrase,60);
         }
         selectPhrase();
       },200);
       return;
     }
 
-    // italicize The Business Playground once typed
-    if(!target.dataset.italic && idx >= text.indexOf("The Business Playground") + "The Business Playground".length){
-      target.innerHTML = target.innerHTML.replace(/The Business Playground/, '<em>The Business Playground</em>');
-      target.dataset.italic = 'true';
-    }
+    // italics feature removed
   }
 
   typeNext();
