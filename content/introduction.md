@@ -12,6 +12,7 @@ date: 2025-01-01
 #copyRaw { display:none; white-space: pre-wrap; font-size: 1rem; line-height: 1.6; }
 #typewriter { white-space: pre-wrap; font-size: 1rem; line-height: 1.6; font-family: "Courier New", monospace; overflow-wrap: anywhere; }
 .word,.phraseWord{display:inline-block;}
+body{overflow-y:auto;}
 </style>
 
 <pre id="copyRaw">
@@ -169,11 +170,17 @@ document.addEventListener('DOMContentLoaded', () => {
           }
           pw[pIdx].style.background='rgba(0,120,215,0.4)';
           pIdx--;
-          setTimeout(selectPhrase,180);
+          setTimeout(selectPhrase,90);
         }
         selectPhrase();
       },200);
       return;
+    }
+
+    // italicize The Business Playground once typed
+    if(!target.dataset.italic && idx >= text.indexOf("The Business Playground") + "The Business Playground".length){
+      target.innerHTML = target.innerHTML.replace(/The Business Playground/, '<em>The Business Playground</em>');
+      target.dataset.italic = 'true';
     }
   }
 
