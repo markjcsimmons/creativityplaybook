@@ -67,9 +67,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let titleDone = false;
   let paused = false;
-  let phraseHandled = false;
-  const phrase = "Artists and musicians seem to have creativity in their DNA,";
-  const phraseEnd = text.indexOf(phrase) + phrase.length;
+  const specialPhrases = [
+    {
+      text: "Artists and musicians seem to have creativity in their DNA,",
+      handled: false
+    },
+    {
+      text: "A world that runs like a machine",
+      handled: false
+    }
+  ];
+
+  specialPhrases.forEach(p=>{
+    p.endIdx = text.indexOf(p.text) + p.text.length;
+  });
 
   function outputChar(c){
     if(c === '\n'){
@@ -136,13 +147,15 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 200);
     }
 
-    // handle phrase highlight once phrase fully typed
-    if(!phraseHandled && idx === phraseEnd){
-      phraseHandled = true;
+    // handle any special phrase when fully typed
+    const phraseObj = specialPhrases.find(p=>!p.handled && idx === p.endIdx);
+    if(phraseObj){
+      phraseObj.handled = true;
       paused = true;
       setTimeout(()=>{
         // wrap phrase in spans
-        target.innerHTML = target.innerHTML.replace(phrase, phrase.split(' ').map(w=>`<span class=\"phraseWord\">${w}</span>`).join(' '));
+        const regex = new RegExp(phraseObj.text.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'));
+        target.innerHTML = target.innerHTML.replace(regex, phraseObj.text.split(' ').map(w=>`<span class=\"phraseWord\">${w}</span>`).join(' '));
         const pw = [...document.querySelectorAll('.phraseWord')];
         let pIdx = pw.length - 1;
         function selectPhrase(){
