@@ -2,6 +2,7 @@
 layout: base.njk
 title: "Creativity in a World of Biggerer and Biggerer"
 slug: "introduction"
+permalink: "/introduction/index.html"
 description: "Introduction to The Creativity Playbook: why creativity matters more than ever in a world obsessed with efficiency."
 author: "Dave Stewart & Mark Simmons"
 date: 2025-01-01
