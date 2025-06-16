@@ -1,0 +1,141 @@
+body { font-family: Arial, Helvetica, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
+main { padding: 1.5rem; max-width: 800px; margin: auto; }
+.hero { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; background:#E81E8B; color:#fff; padding:3rem 2rem; border-radius:8px; margin-bottom:2rem; }
+.hero-content { max-width:500px; }
+.hero h1 { font-size:2rem; margin-bottom:0.75rem; }
+.hero-link { color:#fff; text-decoration:underline; }
+.hero-cover { width:260px; height:auto; flex-shrink:0; margin-top:1rem; }
+@media (max-width:600px) { .hero { flex-direction:column; text-align:center; } .hero-cover { width:180px; } }
+.hero p { color: #fff; max-width: 450px; margin-left: auto; margin-right: auto; margin: 0.25rem auto; }
+.quotes blockquote { margin: 1rem 0; font-style: italic; border-left: 4px solid #ccc; padding-left: 1rem; }
+.site-nav { background: #E81E8B; padding: 1rem 1.5rem; text-align: center; }
+.site-nav a { color: #fff; margin: 0 0.75rem; text-decoration: none; font-weight: bold; }
+.site-nav a:hover { text-decoration: underline; }
+.site-nav a.home-icon{
+  display:inline-block;
+  padding:0.25rem 0.5rem;
+}
+.site-nav a.home-icon svg{
+  width:56px;
+  height:56px;
+  display:block;
+}
+.cover-full { width:90%; max-width: 600px; height:auto; display:block; margin:2rem auto; border:12px solid #fff; box-shadow:0 2px 10px rgba(0,0,0,0.08);}
+body:not(:has(nav.site-nav)) main { padding:0; max-width:none; }
+.cover-wrapper { position:relative; display:flex; justify-content:center; }
+.link-dave { position:absolute; top:0; left:0; width:100%; height:18%; display:block; z-index:1; }
+.link-dave:hover { cursor:pointer; }
+.link-mark { position:absolute; top:18%; left:0; width:100%; height:23%; display:block; z-index:1; }
+.link-mark:hover { cursor:pointer; }
+.link-intro { position:absolute; top:41%; left:0; width:33%; height:59%; display:block; z-index:1; }
+.link-intro:hover { cursor:pointer; }
+.link-sample { position:absolute; top:41%; left:33%; width:34%; height:59%; display:block; z-index:1; }
+.link-sample:hover { cursor:pointer; }
+.link-buy { position:absolute; top:41%; left:62%; width:30%; height:32%; display:block; z-index:2; }
+.link-buy:hover { cursor:pointer; }
+
+/* === overlay hit-box overrides === */
+.link-dave{position:absolute;top:0;left:0;width:100%;height:18%;display:block;z-index:1;}
+.link-mark{position:absolute;top:18%;left:0;width:100%;height:23%;display:block;z-index:1;}
+.link-intro{position:absolute;top:41%;left:0;width:33%;height:59%;display:block;z-index:1;}
+.link-sample{position:absolute;top:41%;left:33%;width:34%;height:59%;display:block;z-index:1;}
+.link-buy{position:absolute;top:41%;left:62%;width:30%;height:32%;display:block;z-index:2;}
+.link-dave:hover,.link-mark:hover,.link-intro:hover,.link-sample:hover,.link-buy:hover{cursor:pointer;}
+
+/* Hotspots disabled */
+.link-dave,.link-mark,.link-intro,.link-sample,.link-buy{display:none!important;}
+
+/* Re-enable Dave Stewart hotspot */
+.link-dave{display:block!important;}
+
+/* Limit hotspot width to same as cover image (90% centered) */
+.link-dave{width:90%;left:50%;transform:translateX(-50%);}
+
+/* Adjust Dave hotspot to left half of the cover */
+.link-dave{width:45%;left:5%;transform:none;}
+
+/* Re-enable Mark Simmons hotspot over right half of the cover */
+.link-mark{display:block!important;top:0;left:50%;width:45%;height:18%;transform:none;}
+
+/* Introduction hotspot: left third beneath top bar, spanning until 50% vertical point */
+.link-intro{display:block!important;position:absolute;top:18%!important;left:10%!important;width:25%!important;height:32%!important;z-index:1;}
+
+/* Sample Chapter hotspot: middle third beneath top bar */
+.link-sample{display:block!important;position:absolute;top:18%!important;left:37%!important;width:23%!important;height:32%!important;z-index:1;}
+
+/* Buy hotspot: move further left */
+.link-buy{display:block!important;position:absolute;top:18%!important;left:62%!important;width:30%!important;height:32%!important;z-index:2;}
+
+/* === Fancy popup cards on hotspot hover === */
+.cover-wrapper a::after{
+  content: attr(data-label);
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%) scale(0.8);
+  background:#E81E8B;
+  color:#fff;
+  padding:0.75rem 1.25rem;
+  border:1px solid #fff;
+  border-radius:12px;
+  font-size:1rem;
+  font-weight:bold;
+  white-space:nowrap;
+  box-shadow:0 4px 10px rgba(0,0,0,0.15);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 0.25s ease, transform 0.25s ease;
+  z-index:5;
+}
+
+.cover-wrapper a:hover::after,
+.cover-wrapper a:focus::after{
+  opacity:1;
+  transform:translate(-50%,-60%) scale(1);
+}
+
+/* small arrow pointer */
+.cover-wrapper a::before{
+  content:"";
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%) rotate(45deg) scale(0.8);
+  width:12px;
+  height:12px;
+  background:#E81E8B;
+  opacity:0;
+  transition:opacity 0.25s ease, transform 0.25s ease;
+  z-index:4;
+}
+
+.cover-wrapper a:hover::before,
+.cover-wrapper a:focus::before{
+  opacity:1;
+  transform:translate(-50%, -25%) rotate(45deg) scale(1);
+}
+
+/* Center Intro and Buy popups within their hotspots (align with Dave & Mark) */
+.link-intro::after,.link-intro::before,
+.link-buy::after,.link-buy::before{
+  left:50%!important;
+  transform:translate(-50%,-50%) scale(0.8);
+}
+
+/* Nudge Introduction popup 20% toward centre */
+.link-intro:hover::after, .link-intro:focus::after,
+.link-intro:hover::before, .link-intro:focus::before{
+  transform:translate(-10%, -60%) scale(1) !important;
+}
+
+/* Nudge Buy popup 20% toward centre */
+.link-buy:hover::after, .link-buy:focus::after,
+.link-buy:hover::before, .link-buy:focus::before{
+  transform:translate(-90%, -60%) scale(1) !important;
+}
+
+/* Thoughts hotspot: bottom central area */
+.link-thoughts{display:block!important;position:absolute;top:50%;left:5%;width:90%;height:35%;z-index:1;}
+
+/* Contact hotspot: bottom strip */
+.link-contact{display:block!important;position:absolute;top:85%;left:5%;width:90%;height:13%;z-index:1;} 

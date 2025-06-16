@@ -1,0 +1,13 @@
+# Node modules
+node_modules/
+
+# Build output
+_site/
+
+# Large raw assets
+*.zip
+*.tif
+*.tiff
+
+# OS files
+.DS_Store
