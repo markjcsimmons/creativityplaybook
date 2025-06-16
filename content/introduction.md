@@ -123,5 +123,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   typeNext();
+
+  document.addEventListener('click', () => {
+    paused = !paused;
+    if(!paused){
+      setTimeout(typeNext, 0);
+    }
+  });
 });
 </script> 
