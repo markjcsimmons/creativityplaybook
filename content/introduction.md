@@ -47,17 +47,20 @@ Dave & Mark, 2025
 
 <div id="typewriter"></div>
 
-<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.16"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const rawEl = document.getElementById('copyRaw');
   const raw = rawEl.textContent.trim();
-  new Typed('#typewriter', {
-    strings: [raw],
-    typeSpeed: 15,
-    startDelay: 0,
-    smartBackspace: false,
-    showCursor: false,
-  });
+  const target = document.getElementById('typewriter');
+  rawEl.remove();
+  let idx = 0;
+  const speed = 15; // milliseconds per char
+  function typeNext(){
+    if(idx < raw.length){
+      target.textContent += raw[idx++];
+      setTimeout(typeNext, speed);
+    }
+  }
+  typeNext();
 });
 </script> 
