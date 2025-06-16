@@ -52,13 +52,13 @@ Dave & Mark, 2025
 document.addEventListener('DOMContentLoaded', () => {
   const rawEl = document.getElementById('copyRaw');
   const raw = rawEl.textContent.trim();
-  // rawEl.style.display = 'none';
   new Typed('#typewriter', {
     strings: [raw],
-    typeSpeed: 20,
-    startDelay: 300,
+    typeSpeed: 15,
+    startDelay: 0,
     smartBackspace: false,
     showCursor: false,
+    onBegin: () => { rawEl.style.visibility = 'hidden'; }
   });
 });
 </script> 
