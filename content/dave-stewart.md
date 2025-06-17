@@ -1,8 +1,11 @@
 ---
 layout: base.njk
 title: "Dave Stewart"
-slug: "dave-stewart"
+slug: "davestewart"
+permalink: "/davestewart/index.html"
 ---
+
+<h1>Dave Stewart</h1>
 
 <style>
 #daveBio{font-family:"Courier New",monospace;white-space:pre-wrap;font-size:1rem;line-height:1.6;}
@@ -30,4 +33,12 @@ Dave is the owner/founder of Bay Street Records, writing and producing with unkn
 <strong>"He's the musician's musician."</strong> – Rolling Stone
 
 <strong>"Jack of All Trades Master of All of Them"</strong> – The Sunday Times
-</div> 
+</div>
+
+<nav class="site-nav" style="margin-top:2rem;">
+  <a href="/" class="home-icon" aria-label="Home">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true">
+      <path d="M12 3l9 8h-3v9h-4v-6H10v6H6v-9H3l9-8z" />
+    </svg>
+  </a>
+</nav> 
