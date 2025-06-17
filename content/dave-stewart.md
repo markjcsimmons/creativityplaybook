@@ -5,10 +5,11 @@ slug: "davestewart"
 permalink: "/davestewart/index.html"
 ---
 
-<h1>Dave Stewart</h1>
+<h1 class="dave-title">Dave Stewart</h1>
 
 <style>
 #daveBio{font-family:"Courier New",monospace;white-space:pre-wrap;font-size:1rem;line-height:1.6;}
+.dave-title{font-family:"Courier New",monospace;font-size:1.25rem;margin:0 0 1rem 0;}
 </style>
 
 <div id="daveBio">
